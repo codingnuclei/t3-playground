@@ -7,6 +7,7 @@ import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
   const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
+  const helloFirstUser = trpc.example.getOne.useQuery();
 
   return (
     <>
@@ -45,6 +46,9 @@ const Home: NextPage = () => {
           <div className="flex flex-col items-center gap-2">
             <p className="text-2xl text-white">
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+            </p>
+            <p className="text-2xl text-white">
+              Public User id: {helloFirstUser.data ? helloFirstUser.data.id : "Loading tRPC query..."}
             </p>
             <AuthShowcase />
           </div>
