@@ -8,11 +8,12 @@ import { trpc } from "../utils/trpc";
 const Home: NextPage = () => {
   const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
   const helloFirstUser = trpc.example.getOne.useQuery();
+  const helloFromSta = trpc.example.staHello.useQuery({ text: "from STA" })
 
   return (
     <>
       <Head>
-        <title>Create T3 App</title>
+        <title>STA APP</title>
         <meta
           name='viewport'
           content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'
@@ -60,7 +61,7 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+            Your <span className="text-[hsl(280,100%,70%)]">STA</span> App
           </h1>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
             <Link
@@ -90,6 +91,10 @@ const Home: NextPage = () => {
             </p>
             <p className="text-2xl text-white">
               Public User id: {helloFirstUser.data ? helloFirstUser.data.id : "Loading tRPC query..."}
+            </p>
+
+            <p className="text-2xl text-white">
+              STA: {helloFromSta.data ? helloFromSta.data.greeting : "Waiting....."}
             </p>
             <AuthShowcase />
           </div>
